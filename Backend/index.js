@@ -10,7 +10,7 @@ const { default: mongoose } = require('mongoose');
 const app=express();
 app.use(express.json());
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin:"https://peace-pg-s-management-system.vercel.app",
     credentials:true,
     method:"GET POST"
 }))
@@ -27,3 +27,12 @@ mongoose.connect("mongodb://localhost:27017/Peace_PG_DATABASE")
 .then(()=>console.log("Data base connected"))
 .catch((error)=>console.log("Error connecting database",error))
 
+
+
+
+// VERCEL FRONTEND URL :"https://peace-pg-s-management-system.vercel.app/"
+// LOCALHOST FRONTEND UrL:"http://localhost:5173"
+// RNEDER BACKEND URL:""
+// LOCALHOST BACKENDURL:""
+// MONGODB LOCAL HOST URL:"mongodb://localhost:27017/Peace_PG_DATABASE"
+// MONGODB CLUSTER ONLINE URL:""
