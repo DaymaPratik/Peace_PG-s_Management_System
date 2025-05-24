@@ -1,0 +1,29 @@
+const express=require('express');
+const cors=require("cors");
+const AdminRouter=require('./Router/AdminRouter');
+const BuildingRouter=require("./Router/BuildingRouter")
+const TenantRouter=require("./Router/TenantRouter")
+const ContactUsRouter=require("./Router/ContactUsRouter")
+const UserRouter=require("./Router/UserRouter")
+const { default: mongoose } = require('mongoose');
+
+const app=express();
+app.use(express.json());
+app.use(cors({
+    origin:"http://localhost:5173",
+    credentials:true,
+    method:"GET POST"
+}))
+app.use(UserRouter)
+app.use(ContactUsRouter);
+app.use(AdminRouter);
+app.use(BuildingRouter);
+app.use(TenantRouter);
+
+app.listen(8000,()=>{
+    console.log("App is listening at 8000 post")
+})
+mongoose.connect("mongodb://localhost:27017/Peace_PG_DATABASE")
+.then(()=>console.log("Data base connected"))
+.catch((error)=>console.log("Error connecting database",error))
+
