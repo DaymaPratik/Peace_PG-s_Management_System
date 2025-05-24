@@ -24,7 +24,7 @@ app.listen(8000,()=>{
     console.log("App is listening at 8000 post")
 })
 mongoose.connect("mongodb+srv://pratikdayma45:LzJlylhbT6B09Fqd@cluster0.cpq5ooo.mongodb.net/Peace_PG_DATABAS")
-.then(()=>console.log("Data base connected"))
+.then(()=>console.log("Data base connected cluster"))
 .catch((error)=>console.log("Error connecting database",error))
 
 
