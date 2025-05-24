@@ -23,7 +23,7 @@ app.use(TenantRouter);
 app.listen(8000,()=>{
     console.log("App is listening at 8000 post")
 })
-mongoose.connect("mongodb+srv://pratikdayma45:<db_password>@cluster0.egsqsxd.mongodb.net/Peace_PG_DATABAS")
+mongoose.connect("mongodb+srv://pratikdayma45:Manoj@#1983@cluster0.egsqsxd.mongodb.net/Peace_PG_DATABAS")
 .then(()=>console.log("Data base connected"))
 .catch((error)=>console.log("Error connecting database",error))
 
