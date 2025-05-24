@@ -15,7 +15,7 @@ function ContactUs() {
   const handleSubmit=async(e)=>{
       e.preventDefault();
       try {
-        const response=await fetch("http://localhost:8000/api/post/conatctUs/addFromDetails",{
+        const response=await fetch("https://peace-pg-s-management-system.onrender.com/api/post/conatctUs/addFromDetails",{
           method:"POST",
           headers:{
             "Content-Type":"application/json"

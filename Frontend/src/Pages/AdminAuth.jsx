@@ -15,7 +15,7 @@ function AdminAuth() {
     const loginFunction=async(e)=>{
         e.preventDefault();
         try {
-            const res=await fetch("http://localhost:8000/api/adminLogin",{
+            const res=await fetch("https://peace-pg-s-management-system.onrender.com/api/adminLogin",{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json"

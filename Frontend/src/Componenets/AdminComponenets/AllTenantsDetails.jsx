@@ -6,7 +6,7 @@ function AllTenantsDetails() {
   useEffect(()=>{
     const getTenantsDetailsArrayFunction=async()=>{
       try {
-        const res=await fetch("http://localhost:8000/api/getTenantsDetails",{
+        const res=await fetch("https://peace-pg-s-management-system.onrender.com/api/getTenantsDetails",{
           method:"GET",
           headers:{
             "Content-Type":"application/json"
@@ -29,7 +29,7 @@ function AllTenantsDetails() {
 
   const tenantDetailsDeteleFunction=async(id)=>{
     try {
-        const res=await fetch(`http://localhost:8000/api/post/tenants/deleteTenantDetails/${id}`,{
+        const res=await fetch(`https://peace-pg-s-management-system.onrender.com/api/post/tenants/deleteTenantDetails/${id}`,{
            method:"DELETE",
            headers:{
             "Content-Type":"application/json"

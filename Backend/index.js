@@ -23,7 +23,7 @@ app.use(TenantRouter);
 app.listen(8000,()=>{
     console.log("App is listening at 8000 post")
 })
-mongoose.connect("mongodb://localhost:27017/Peace_PG_DATABASE")
+mongoose.connect("mongodb+srv://pratikdayma45:<db_password>@cluster0.egsqsxd.mongodb.net/Peace_PG_DATABAS")
 .then(()=>console.log("Data base connected"))
 .catch((error)=>console.log("Error connecting database",error))
 
@@ -35,4 +35,4 @@ mongoose.connect("mongodb://localhost:27017/Peace_PG_DATABASE")
 // RNEDER BACKEND URL:""
 // LOCALHOST BACKENDURL:""
 // MONGODB LOCAL HOST URL:"mongodb://localhost:27017/Peace_PG_DATABASE"
-// MONGODB CLUSTER ONLINE URL:""
+// MONGODB CLUSTER ONLINE URL:"mongodb+srv://pratikdayma45:<db_password>@cluster0.egsqsxd.mongodb.net/Peace_PG_DATABASE

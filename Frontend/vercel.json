@@ -1,0 +1,33 @@
+{
+    "routes":[
+        {
+          "src":"/",
+          "dest":"/"
+        },
+        {
+            "src":"/api/adminAuth",
+            "dest":"/"
+          },
+          {
+            "src":"/api/userAuth",
+            "dest":"/"
+          },
+          {
+            "src":"/api/contactUs",
+            "dest":"/"
+          },
+          {
+            "src":"/api/adminDetails",
+            "dest":"/"
+          },
+          {
+            "src":"/api/adminDashboard",
+            "dest":"/"
+          },{
+            "src":"/api/tenantAuth",
+            "dest":"/"
+          }
+
+        
+    ]
+}

@@ -39,7 +39,7 @@ const AddNewTenant = () => {
     e.preventDefault();
     console.log('Tenant Data:', tenantData);
     try {
-      const res=await fetch("http://localhost:8000/api/addNewTenantDetails",{
+      const res=await fetch("https://peace-pg-s-management-system.onrender.com/api/addNewTenantDetails",{
         method:"POST",
         headers:{
           "Content-Type":"application/json"

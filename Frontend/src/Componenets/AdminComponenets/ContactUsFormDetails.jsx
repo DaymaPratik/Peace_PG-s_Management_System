@@ -12,7 +12,7 @@ function ContactUsFormDetails() {
     const getContactUsDetailsFunction = async () => {
       try {
         const res = await fetch(
-          "http://localhost:8000/api/post/conatctUs/getContactFromDetails",
+          "https://peace-pg-s-management-system.onrender.com/api/post/conatctUs/getContactFromDetails",
           {
             method: "GET",
             headers: {
@@ -37,7 +37,7 @@ function ContactUsFormDetails() {
 
   const contactFormDeteleFunction=async(id)=>{
     try {
-        const res=await fetch(`http://localhost:8000/api/post/contactUs/deleteContactFromDetails/${id}`,{
+        const res=await fetch(`https://peace-pg-s-management-system.onrender.com/api/post/contactUs/deleteContactFromDetails/${id}`,{
            method:"DELETE",
            headers:{
             "Content-Type":"application/json"

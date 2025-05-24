@@ -45,7 +45,7 @@ const handleAmunnitiesAvailFunction = (e) => {
     e.preventDefault();
     console.log('Submitted Building Details:', buildingDetails);
     try {
-      const response=await fetch("http://localhost:8000/api/addBuildingDetails",{
+      const response=await fetch("https://peace-pg-s-management-system.onrender.com/api/addBuildingDetails",{
         method:"POST",
         credentials:"include",
         headers:{

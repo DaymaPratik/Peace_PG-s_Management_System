@@ -19,7 +19,7 @@ const buildingDetailsDeteleFunction=async(id)=>{
       return id !== item._id
     })
     setBuildingDetailsArray(updatedArray)
-    const res=await fetch(`http://localhost:8000/api/deleteBuildingDetails/${id}`,{
+    const res=await fetch(`https://peace-pg-s-management-system.onrender.com/api/deleteBuildingDetails/${id}`,{
       method:"DELETE",
       headers:{
         "Content-Type":"application/json"

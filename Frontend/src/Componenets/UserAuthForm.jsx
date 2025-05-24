@@ -23,7 +23,7 @@ function UserAuthForm() {
       e.preventDefault();
       if (isRegistering) {
        try {
-        const res=await fetch("http://localhost:8000/api/user/register",{
+        const res=await fetch("https://peace-pg-s-management-system.onrender.com/api/user/register",{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
@@ -44,7 +44,7 @@ function UserAuthForm() {
        }
       } else {
         try {
-            const res=await fetch("http://localhost:8000/api/user/login",{
+            const res=await fetch("https://peace-pg-s-management-system.onrender.com/api/user/login",{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json"
