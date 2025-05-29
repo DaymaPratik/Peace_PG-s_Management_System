@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { AdminDetailsContext } from '../Context/AdminContextProvider';
 import { useNavigate } from 'react-router-dom';
 import { FaEnvelope, FaLock, FaSignInAlt } from 'react-icons/fa';
-
+import { toast } from "react-toastify";
 function AdminAuth() {
     const {adminDetails,setAdminDetails}=useContext(AdminDetailsContext);
     const navigate=useNavigate();
@@ -25,21 +25,21 @@ function AdminAuth() {
             })
             const data= await res.json();     
               console.log(data);
-              
+           
             const updatedAdminDetails={
                 ...adminDetails,
                 adminId:data.adminDetails._id,
                 isLogin: true
             }
             setAdminDetails(updatedAdminDetails)
-            sessionStorage.setItem('admin',JSON.stringify(updatedAdminDetails))
+            toast.success("Successfully Logged in as a Admin")
             navigate('/api/adminDashboard')
             // console.log(updatedAdminDetails);
             
 
         } catch (error) {
             console.log("Error in login admin frontend",error);
-            
+            toast.success("Errorin loging in as a Admin")
         }
     }
   return (

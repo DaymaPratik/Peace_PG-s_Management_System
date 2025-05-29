@@ -9,7 +9,7 @@ const BuildingSchema=new mongoose.Schema({
         required:true
     },
     flatsPerFloor:{
-        type:String,
+        type:Number,
         required:true
     },
     address:{
@@ -17,7 +17,7 @@ const BuildingSchema=new mongoose.Schema({
         required:true
     },
     bedsPerFloor:{
-        type:String,
+        type:Number,
         required:true
     },
     flatTypes:{
@@ -29,6 +29,12 @@ const BuildingSchema=new mongoose.Schema({
         required:true
     },
     totalBeds:{
+        type:"String",
+    },
+    availableBeds:{
+        type:"Number"
+    },
+    totalFlats:{
         type:"String",
     }
     

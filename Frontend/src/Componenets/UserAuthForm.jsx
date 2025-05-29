@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FaUser, FaEnvelope, FaLock, FaPhone, FaMapMarkedAlt } from 'react-icons/fa';
 import { UserContext } from '../Context/UserContextProvider';
-
-
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 function UserAuthForm() {
-    const [isRegistering, setIsRegistering] = useState(false);
-    const {userDetails,setUserDetails}=useContext(UserContext);
+    const [isRegistering, setIsRegistering] = useState(true);
+    const {userDetailsObj,setUserDetailsObj}=useContext(UserContext);
+    const navigate=useNavigate();
     const [formData, setFormData] = useState({
       name: '',
       email: '',
@@ -19,53 +20,75 @@ function UserAuthForm() {
       setFormData(prev => ({ ...prev, [name]: value }));
     };
   
+    
+
     const handleSubmit = async (e) => {
       e.preventDefault();
+    
       if (isRegistering) {
-       try {
-        const res=await fetch("https://peace-pg-s-management-system.onrender.com/api/user/register",{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
+        try {
+          const res = await fetch("https://peace-pg-s-management-system.onrender.com/api/user/register", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
             },
-            credentials:"include",
-            body:JSON.stringify(formData)
-            
-        })
-        const data=await res.json();
-        console.log(data);
-        setUserDetails(formData);
-        console.log("USER DETAILS",userDetails);
-        
-        
-       } catch (error) {
-        console.log("Error Registering User in frontend",error);
-        
-       }
+            credentials: "include",
+            body: JSON.stringify(formData),
+          });
+    
+          const data = await res.json();
+          console.log(data);
+    
+          // Save all user info along with login status
+          setUserDetailsObj({
+            ...formData,
+            userId: data.userDetails?._id || "", // depends on API response
+            isLogin: true,
+          });
+    
+          toast.success("User Registered Successfully");
+          navigate("/");
+        } catch (error) {
+          console.error("Error registering user", error);
+          toast.error("Error in User Registration");
+        }
       } else {
         try {
-            const res=await fetch("https://peace-pg-s-management-system.onrender.com/api/user/login",{
-                method:"POST",
-                headers:{
-                    "Content-Type":"application/json"
-                },
-                credentials:"include",
-                body:JSON.stringify(formData)
-            })
-            const data=await res.json();
-            console.log(data);
-            setUserDetails(data.userDetails);
-            
-            
-           } catch (error) {
-            console.log("Error login  User in frontend",error);
-            
-           }
+          const res = await fetch("https://peace-pg-s-management-system.onrender.com/api/user/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+            body: JSON.stringify(formData),
+          });
+    
+          const data = await res.json();
+          console.log(data);
+    
+          if (data?.userDetails) {
+            setUserDetailsObj({
+              name: data.userDetails.name,
+              email: data.userDetails.email,
+              userId: data.userDetails._id,
+              isLogin: true,
+            });
+    
+            toast.success("User Logged in Successfully");
+            navigate("/");
+          } else {
+            toast.error("Invalid login response");
+          }
+        } catch (error) {
+          console.error("Error logging in user", error);
+          toast.error("Error in User Sign In");
+        }
       }
     };
     useEffect(()=>{
-        console.log("USER DETAILS",userDetails);
-    },[userDetails])
+      
+        console.log("USER DETAILS",userDetailsObj);
+    },[userDetailsObj])
   
     return (
       <div className="flex justify-center items-center min-h-screen
@@ -164,3 +187,93 @@ function UserAuthForm() {
 }
 
 export default UserAuthForm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (isRegistering) {
+  //    try {
+  //     const res=await fetch("https://peace-pg-s-management-system.onrender.com/api/user/register",{
+  //         method:"POST",
+  //         headers:{
+  //             "Content-Type":"application/json"
+  //         },
+  //         credentials:"include",
+  //         body:JSON.stringify(formData)
+          
+  //     })
+  //     const data=await res.json();
+  //     console.log(data);
+  //     setUserDetailsObj(formData);
+  //     console.log("USER DETAILS before storing to session storage",userDetailsObj);
+  //     setUserDetailsObj({...userDetailsObj,isLogin:true})
+     
+  //     console.log("USER DETAILS before storing to session storage",userDetailsObj);
+  //     toast.success("User Registered Successfully")
+  //     navigate("/")
+      
+  //    } catch (error) {
+  //     console.log("Error Registering User in frontend",error);
+  //     toast.error("Error in User Registion")
+  //    }
+  //   } else {
+  //     try {
+  //         const res=await fetch("https://peace-pg-s-management-system.onrender.com/api/user/login",{
+  //             method:"POST",
+  //             headers:{
+  //                 "Content-Type":"application/json"
+  //             },
+  //             credentials:"include",
+  //             body:JSON.stringify(formData)
+  //         })
+  //         const data=await res.json();
+  //         console.log(data);
+  //         const updatedData={
+  //           ...userDetailsObj,
+  //           userId:data.userDetails._id,
+  //           isLogin:true
+  //         }
+  //         setUserDetailsObj(updatedData);
+  //         sessionStorage.setItem("user-details",JSON.stringify(updatedData))
+  //         toast.success("User Logged in Successfully")
+  //         navigate("/")
+  //        } catch (error) {
+  //         console.log("Error login  User in frontend",error);
+  //         toast.error("Error in User user sign in")
+  //        }
+  //   }
+  // };

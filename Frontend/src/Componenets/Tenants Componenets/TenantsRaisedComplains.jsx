@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { MdPerson, MdEmail, MdRoom, MdCategory } from "react-icons/md";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { FaRegCommentDots } from "react-icons/fa";
@@ -7,33 +7,17 @@ import { UserContext } from "../../Context/UserContextProvider";
 import { toast } from "react-toastify";
 import AOS from "aos";
 import "aos/dist/aos.css";
-function Complaints() {
+function TenantsRaisedComplains({
+  getAllRaisedComplaintsFunction,
+  tenatsRaisedComplaintsArray,
+  setTenatsRaisedComplaintsArray,
+}) {
+  const { userDetailsObj } = useContext(UserContext);
+
   useEffect(() => {
     AOS.init();
-    getAllRaisedComplaintsFunction();
+    getAllRaisedComplaintsFunction(userDetailsObj.email);
   }, []);
-
-   const [complaintsArray,setComplaintsArray]=useState([])
-
- const getAllRaisedComplaintsFunction = async ()=>{
-        try {
-            const res=await fetch(`https://peace-pg-s-management-system.onrender.com/api/admin/getMyRaisedComplain`,{
-                method:"GET",
-                headers:{
-                    "Content-Type":"application/json"
-                },
-                credentials:"include"
-            });
-            const data=await res.json();
-            console.log(data);
-            setComplaintsArray(data.allComplains)
-            console.log(complaintsArray);
-            
-        } catch (error) {
-            console.log("Error in frontend While getting all raise compalins",error);
-        }
-    }
-  
 
   const deleteComplaintFunction = async (id) => {
     try {
@@ -49,10 +33,10 @@ function Complaints() {
       );
       const data = await res.json();
       console.log(data);
-      const updatedArray = complaintsArray.filter((item) => {
+      const updatedArray = tenatsRaisedComplaintsArray.filter((item) => {
         return item._id !== id;
       });
-      setComplaintsArray(updatedArray);
+      setTenatsRaisedComplaintsArray(updatedArray);
       toast.success("Deleted Raised Complained Successfully");
     } catch (error) {
       console.log("error in deleting raised complaint frontend", error);
@@ -61,17 +45,17 @@ function Complaints() {
   };
   let delay = 100;
   return (
-    <main className=' mx-auto space-y-6'>
+    <main className=" mx-auto space-y-6">
       <h1
         data-aos="fade-up"
         data-aos-delay="100"
         className="text-center  text-[35px] font-bold
           text-[#f09b9b] w-full bg-[#2a122e20]  backdrop-blur-2xl py-10"
       >
-        📋 All Raised Complaints Details....
+        📋 All Complaints Raised Details....
       </h1>
-      <section className="grid grid-cols-2 gap-5  justify-items-center p-5 px-10 ">
-        {complaintsArray.length === 0 ? (
+      <section className="grid grid-cols-2 gap-5 justify-items-center p-5 px-10 ">
+        {tenatsRaisedComplaintsArray.length === 0 ? (
           <p
             className="text-center text-[#f09b9b]"
             data-aos="fade-up"
@@ -80,7 +64,7 @@ function Complaints() {
             No complaints submitted yet.
           </p>
         ) : (
-          complaintsArray?.map((complaint, idx) => {
+          tenatsRaisedComplaintsArray.map((complaint, idx) => {
             delay += 150;
             return (
               <div
@@ -160,4 +144,4 @@ function Complaints() {
   );
 }
 
-export default Complaints;
+export default TenantsRaisedComplains;

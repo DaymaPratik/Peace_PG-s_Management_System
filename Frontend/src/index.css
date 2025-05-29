@@ -1,1 +1,22 @@
 @import "tailwindcss";
+
+.caveat-fancyFont {
+  font-family: "Caveat", cursive;
+  
+  font-style: normal;
+}
+.lora {
+font-family: "Jaro", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+
+}
+.lighter{
+    font-weight: 100;
+}
+.bold{
+    font-weight: bolder;
+}
+.medium{
+    font-weight: 500;
+}

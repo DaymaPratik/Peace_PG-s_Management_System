@@ -1,4 +1,5 @@
 const BuildingModel=require("../Model/BuildingModel")
+const TenantModel=require('../Model/TenantModel')
 const addBuildingDetailsFunction=async(req,res)=>{
     console.log("REQUEST BODY",req.body);
     const {name,floors,flatsPerFloor,address,bedsPerFloor,flatTypes,ammunities}=req.body
@@ -12,7 +13,8 @@ const addBuildingDetailsFunction=async(req,res)=>{
     try {
         console.log(typeof bedsPerFloor , typeof floors);
         const totalBeds=parseInt(floors)*parseInt(bedsPerFloor);
-        const createNewBuilding=await BuildingModel.create({name,floors,flatsPerFloor,address,ammunities,totalBeds,bedsPerFloor,flatTypes});
+        const totalFlats=parseInt(floors)*parseInt(flatsPerFloor)
+        const createNewBuilding=await BuildingModel.create({name,floors,flatsPerFloor,address,ammunities,totalBeds,bedsPerFloor,flatTypes,totalFlats,availableBeds:totalBeds});
         res.status(200).json({
         success:true,
         message:"Added building details in db",
@@ -30,7 +32,6 @@ const addBuildingDetailsFunction=async(req,res)=>{
 const getBuildingDetailsFunction=async (req,res)=>{
     try {
         const buildingDetailsArray=await BuildingModel.find({});
-        // console.log(buildingDetailsArray);
         res.status(200).json({
             success:true,
             message:"Got the building details",

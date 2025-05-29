@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { FaUser, FaEnvelope, FaPhone, FaCommentDots } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
-
+import { toast } from "react-toastify";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 function ContactUsFormDetails() {
   const [contactUsArray, setContactArray] = useState([]);
-
+useEffect(() => {
+    AOS.init();
+  }, []);
 
 
   useEffect(() => {
@@ -25,8 +29,10 @@ function ContactUsFormDetails() {
         console.log(data);
         const updatedArray = data.contactUsFormDetailsArray;
         setContactArray(updatedArray);
+       
       } catch (error) {
         console.log("Error in geting contact details frontend", error);
+       
       }
     };
     getContactUsDetailsFunction();
@@ -48,20 +54,28 @@ function ContactUsFormDetails() {
         const updatedArray=contactUsArray.filter((item)=>item._id!==id);
         setContactArray(updatedArray);
         console.log(data);
-        
+        toast.success("Deleted ContactUs Form Details")
         
     } catch (error) {
         console.log("Errordeleteing contact form detail in frontend",error);
-        
+        toast.success("Error in deleting ContactUs Form Details")
     }
   }
+   let delay=0;
   return (
-    <section className="min-h-[50vh] grid grid-cols-3 gap-10 p-10 h-fit w-full bg-[#ee8f8f8d]">
+     <main>
+      <h2 className="text-4xl py-10 font-bold backdrop-blur-sm text-[#f09b9b] bg-[#00b5f234] text-center mb-6">
+        All Contatct-Us Form Details
+      </h2>
+    <section className="min-h-[50vh] grid grid-cols-3 gap-10 p-10 h-fit w-full ">
+
+  
       {contactUsArray.map((item, idx) => {
+         delay=delay+150;
         return (
           <div
-            key={idx}
-            className="w-full h-fit max-w-md border border-gray-300 shadow-lg rounded-2xl bg-white p-5 space-y-4 text-gray-800 hover:shadow-2xl transition-shadow duration-300"
+            key={idx}  data-aos="fade-left" data-aos-delay={delay}
+            className="w-full h-fit max-w-md border border-gray-300 shadow-lg rounded-2xl bg-[#00ddff1f] p-5 space-y-4 text-[#f09b9b] hover:shadow-2xl transition-shadow duration-300"
           >
             <div className="flex items-center space-x-3">
               <FaUser className="text-blue-600 text-xl" />
@@ -89,6 +103,7 @@ function ContactUsFormDetails() {
         );
       })}
     </section>
+     </main>
   );
 }
 

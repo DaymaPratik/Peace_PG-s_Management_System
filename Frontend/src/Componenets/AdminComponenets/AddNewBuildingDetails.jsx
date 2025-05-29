@@ -1,8 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BuildingDetailsContext } from '../../Context/BuildingContextProvider';
-
+import { toast } from "react-toastify";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 function AddNewBuildingDetails({setRenderComponenet}) {
   const {getBuildingDetailsFunction}=useContext(BuildingDetailsContext);
+  
+  useEffect(() => {
+    AOS.init();
+  
+    
+  }, [])
   
   const [buildingDetails, setBuildingDetails] = useState({
     name: '',
@@ -57,7 +65,7 @@ const handleAmunnitiesAvailFunction = (e) => {
       console.log(data);
       setRenderComponenet("AllBuildingDetails");
       getBuildingDetailsFunction();
-      
+      toast.success("Added new buldings details")
       setBuildingDetails({
         name: '',
         floors: '',
@@ -70,15 +78,24 @@ const handleAmunnitiesAvailFunction = (e) => {
 
     } catch (error) {
       console.log("Error in fontend add new building",error);
+      toast.error("Error adding new buldings details")
     }
   };
   
 
   return (
-    <div className='w-full py-10'>
-      <section className="max-w-[90%] mx-auto bg-gradient-to-l from-[#ed82c694] to-[#a2cbf977]  shadow-xl rounded-lg p-8 mt-10">
+    <div className='w-full py-10'
+     data-aos="fade-left"
+    >
+      <div className='text-[#f09b9b] w-full bg-[#2a122e0a] backdrop-blur-sm py-5 shadow-xl'  >
+        <h2 className='text-5xl text-center  font-bold  py-5'>Add a new Building To Service</h2>
+      </div>
+
+
+
+      <section data-aos="fade-right" className="w-[89%]  ml-20 bg-gradient-to-l text-[#f09b9b] backdrop-blur-md from-[#360c6561] to-[#00b5f269]  shadow-xl rounded-lg p-8 mt-10">
       <h2 className="text-4xl mx-auto font-extrabold text-center mb-6 w-fit px-5 border-b-4 text-green-500 border-green-500">Add Building Details</h2>
-      <form onSubmit={addNewBuildingFunction} className="space-y-10 text-lg">
+      <form onSubmit={addNewBuildingFunction} className="space-y-2 text-md">
         <div>
           <label htmlFor="name" className="block mb-1 text-2xl font-medium">Building Name</label>
           <input
@@ -87,7 +104,7 @@ const handleAmunnitiesAvailFunction = (e) => {
             name="name"
             value={buildingDetails.name}
             onChange={handleChange}
-            className="w-full focus:border-none border-1 border-black p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full focus:border-none border-1 border-[#f09b9b]  p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
             required
           />
         </div>
@@ -100,7 +117,7 @@ const handleAmunnitiesAvailFunction = (e) => {
             name="floors"
             value={buildingDetails.floors}
             onChange={handleChange}
-            className="w-[50%] block mt-3 focus:border-none border-1 border-black p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-[50%] block mt-3 focus:border-none border-1 border-[#f09b9b]  p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
             required
           />
           </label>
@@ -111,7 +128,7 @@ const handleAmunnitiesAvailFunction = (e) => {
             name="flatsPerFloor"
             value={buildingDetails.flatsPerFloor}
             onChange={handleChange}
-            className="w-[50%] block mt-3 focus:border-none border-1 border-black p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-[50%] block mt-3 focus:border-none border-1 border-[#f09b9b]  p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
             required
           />
           </label>
@@ -122,7 +139,7 @@ const handleAmunnitiesAvailFunction = (e) => {
             name="bedsPerFloor"
             value={buildingDetails.bedsPerFloor}
             onChange={handleChange}
-            className="w-[50%] block mt-3 focus:border-none border-1 border-black p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-[50%] block mt-3 focus:border-none border-1 border-[#f09b9b]  p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
             required
           />
           </label>
@@ -138,7 +155,7 @@ const handleAmunnitiesAvailFunction = (e) => {
             name="address"
             value={buildingDetails.address}
             onChange={handleChange}
-            className="w-full focus:border-none border-1 border-black p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full focus:border-none border-1 border-[#f09b9b]  p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
             rows="3"
             required
           />
@@ -155,7 +172,7 @@ const handleAmunnitiesAvailFunction = (e) => {
                   value={type}
                 //   checked={buildingDetails.flatTypes.includes(type)}
                   onChange={handleFlatTypeChange}
-                  className="accent-amber-600 size-[20px] "
+                  className="accent-amber-600 bg-indigo-500 size-[20px] "
                 />
                 {type}
               </label>
@@ -182,7 +199,7 @@ const handleAmunnitiesAvailFunction = (e) => {
 
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200"
+          className="w-fit block mx-auto px-5 py-3 bg-blue-600 text-white  rounded-md hover:bg-blue-700 transition duration-200"
         >
           Submit Building Details
         </button>

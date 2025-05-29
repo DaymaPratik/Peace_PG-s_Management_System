@@ -38,11 +38,15 @@ const TenantSchema=new mongoose.Schema({
     },
     bedNo: {
         type:String,
-        required:true,
+        required:false,
     },
     buildingName: {
         type:String,
         required:true,
+    },
+     flatNumber: {
+        type:String,
+        required:false,
     },
     feesAllotted:{
         type:String,

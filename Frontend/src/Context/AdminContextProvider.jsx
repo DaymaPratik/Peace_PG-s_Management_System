@@ -1,4 +1,4 @@
-import React, { createContext,  useState } from 'react'
+import React, { createContext,  useEffect,  useState } from 'react'
 // eslint-disable-next-line react-refresh/only-export-components
 export const AdminDetailsContext=createContext({});
 function AdminContextProvider({children}) {
@@ -13,6 +13,9 @@ function AdminContextProvider({children}) {
          }
     })
     
+    useEffect(() => {
+      sessionStorage.setItem("admin", JSON.stringify(adminDetails));
+    }, [adminDetails]);
    
   return (
     <AdminDetailsContext.Provider value={{adminDetails,setAdminDetails}}>

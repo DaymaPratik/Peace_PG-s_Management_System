@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { FaUser, FaEnvelope, FaPhoneAlt, FaRegCommentDots } from "react-icons/fa";
-
+import { toast } from "react-toastify";
 function ContactUs() {
   const [formDetails,setFormDetails]=useState({
     name:"",
@@ -26,6 +26,7 @@ function ContactUs() {
         const data=await response.json();
         // console.log(formDetails);
         console.log(data);
+        toast.success("Sent your ContactUs Form Details")
         setFormDetails({
           name:"",
           mobile:"",
@@ -35,6 +36,7 @@ function ContactUs() {
         
       } catch (error) {
         console.log("Error in frontend while submitting contact us form",error);
+        toast.error("Error sending contact us form details")
       }
   }
   return (
