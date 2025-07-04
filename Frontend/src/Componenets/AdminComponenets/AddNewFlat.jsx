@@ -51,7 +51,7 @@ function AddNewFlat({toggleAddNewFlatValue}) {
 
   
   return (
-    <main className='min-h-screen h-fit w-full  flex flex-col items-center justify-center 
+    <main className='min-h-screen h-fit w-full caveat-fancy flex flex-col items-center justify-center 
     
         p-8 
     '>
@@ -62,7 +62,7 @@ function AddNewFlat({toggleAddNewFlatValue}) {
                    p-8 rounded-2xl shadow-md text-center max-w-3xl mx-auto mb-20"
                   data-aos="fade-down"
                 >
-                  <p className="   text-[35px] mb-6 text-lg">
+                  <p className="  lora text-[25px] sm:text-[35px] mb-6 text-lg">
                     Get All FLats Details 🏡
                   </p>
                   <button
@@ -76,14 +76,14 @@ function AddNewFlat({toggleAddNewFlatValue}) {
 
        
         <section
-      className=" rounded-2xl backdrop-blur-sm p-5 w-fit bg-gradient-to-r bg-[#2a122e20]
+      className=" rounded-2xl backdrop-blur-xs p-5 w-fit bg-gradient-to-r shadow-[0px_0px_5px_#f09b9b] bg-[#2a122e20]
       "
       data-aos="zoom-in"
     >
-      <h2 className="text-4xl font-bold text-white  py-2 mb-4 text-center flex items-center justify-center gap-2">
-        <FaPlus className="text-4xl" /> Add A New Flat
+      <h2 className="text-4xl font-bold text-[#f09b9b] lora  py-2 mb-4 text-center flex items-center justify-center gap-1 sm:gap-2">
+        <FaPlus className="text-[2xl] sm:text-4xl " /> Add A New Flat
       </h2>
-      <form  className="space-y-4 text-xl text-white p-5 gap-10 grid grid-cols-2">
+      <form  className="space-y-4 text-md  sm:text-2xl lg:text-3xl text-white p-2 sm:p-5 gap-1 min-[450px]:gap-5 sm:gap-10 grid grid-cols-1 min-[450px]:grid-cols-2">
         <div>
           <label className="block  font-medium mb-1">
             <FaHome className="inline mr-2 " />

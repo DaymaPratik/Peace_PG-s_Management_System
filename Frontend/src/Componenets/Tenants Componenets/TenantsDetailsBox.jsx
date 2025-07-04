@@ -35,12 +35,12 @@ function TenantsDetailsBox({tenatDetailsObj}) {
         data-aos-delay={delay}
         data-aos="fade-left"
         className="flex items-center gap-3 bg-[#2a122e6a] text-white backdrop-blur-2xl 
-        text-[20px] p-3 px-5 rounded-lg shadow-[0px_0px_3px_white]"
+        text-[20px] px-5 rounded-lg shadow-[0px_0px_3px_white]"
       >
-        <Icon className="text-[#ff2f00] text-xl shrink-0" />
-        <div>
-          <div className="text-md text-[#f09b9b]">{label}</div>
-          <div className="text-xl font-medium ">{value}</div>
+        <Icon className="text-[#ff2f00] text-lg sm:text-xl shrink-0" />
+        <div className="sm:pr-[5px]">
+          <div className="text-sm sm:text-md text-[#f09b9b]">{label}</div>
+          <div className="text-md sm:text-xl font-medium ">{value}</div>
         </div>
       </div>
     );
@@ -52,13 +52,17 @@ function TenantsDetailsBox({tenatDetailsObj}) {
       (
         <div
     data-aos="zoom-in"
-      className="w-[80%] mx-auto p-6 bg-[#2a122e20] text-white 
-   backdrop-blur-sm rounded-3xl shadow-[0px_0px_3px_#f09b9b]  mt-10"
+      className="w-[90%] lg:w-[80%] mx-auto p-2 lg:p-6 bg-[#2a122e20] text-white 
+   backdrop-blur-sm rounded-3xl caveat-fancyFont bold shadow-[0px_0px_3px_#f09b9b]  mt-10"
     >
-      <h2 className="text-3xl font-bold  mb-6 text-center text-[#f09b9b]">🏠 Your Peasonal Details</h2>
+      <h2 className="text-2xl sm:text-3xl font-bold tracking-[3px] lora mb-6 text-center text-[#f09b9b]">🏠 Your Peasonal Details</h2>
 
-      <div className="flex flex-wrap gap-6">
-        <DetailItem icon={FaUser} label="Name" value={tenatDetailsObj.name} />
+      <div className="flex flex-wrap gap-3 lg:gap-6">
+        <DetailItem 
+        icon={FaUser}
+         label="Name"
+          value={tenatDetailsObj.name}
+           />
         <DetailItem
           icon={FaPhoneAlt}
           label="Mobile"
@@ -121,11 +125,15 @@ function TenantsDetailsBox({tenatDetailsObj}) {
       )
       :
       (
-        <div className="text-3xl font-bold py-10 mb-6 text-center bg-[#2a122e20] 
-   backdrop-blur-sm text-[#f09b9b]">Your Have Not Booked A Bed Till Now </div>
+        <div className="text-3xl min-h-[50vh] flex flex-col justify-center items-center font-bold py-10 mb-6 text-center 
+  text-[#f09b9b]">
+    <p className="lora">Your Have Not Booked A Bed Till Now ?</p>
+    <p className="caveat-fancyFont">Request to book a bed by filling the form below</p>
+   </div>
       )
     
   );
 }
 
 export default TenantsDetailsBox;
+// bg-[#2a122e20] 

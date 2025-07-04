@@ -38,7 +38,7 @@ function RequestBedForm() {
     e.preventDefault();
     console.log("Tenant Data:", tenantData);
     try {
-      const res = await fetch("https://peace-pg-s-management-system.onrender.com/api/tenant/bedRequestForm", {
+      const res = await fetch("https://peace-pg-s-management-system.onrender.com/api/post/bedRequest", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -71,8 +71,8 @@ function RequestBedForm() {
   };
 
   return (
-    <div className="w-[90%] mx-auto bg-[#2a122e20] text-white backdrop-blur-2xl rounded-xl shadow-[0px_0px_5px_black]  p-10 mt-10">
-        <h2 className="text-4xl border-b-4 py-2 border-green-400 w-fit mx-auto px-5 font-extrabold text-green-400 mb-6 text-center ">
+    <div className="w-[90%] caveat-fancyFont mx-auto bg-[#2a122e11] text-white backdrop-blur-lg rounded-xl shadow-[0px_0px_5px_black]  p-5 mt-10">
+        <h2 className="text-4xl lora tracking-[3px] border-b-4 py-2 border-green-400 w-fit mx-auto px-5 font-extrabold text-green-400 mb-6 text-center ">
           Request Bed Form
         </h2>
         <form className="rounded-xl w-[90%] mx-auto" onSubmit={handleSubmit}>

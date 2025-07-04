@@ -3,7 +3,13 @@ import { AdminDetailsContext } from '../Context/AdminContextProvider';
 import { useNavigate } from 'react-router-dom';
 import { FaEnvelope, FaLock, FaSignInAlt } from 'react-icons/fa';
 import { toast } from "react-toastify";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from 'react';
 function AdminAuth() {
+  useEffect(()=>{
+    AOS.init();
+  },[])
     const {adminDetails,setAdminDetails}=useContext(AdminDetailsContext);
     const navigate=useNavigate();
     // console.log(adminDetails);
@@ -43,18 +49,36 @@ function AdminAuth() {
         }
     }
   return (
-  
-   <div className="max-w-screen overflow-x-hidden flex justify-center items-center min-h-screen h-fit relative bg-fixed bg-no-repeat bg-center bg-cover 
-   bg-[url('https://images.pexels.com/photos/845242/pexels-photo-845242.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')]">
+    <main>
+
+
+     <section className='flex flex-col justify-center items-center 
+     bg-fixed bg-center bg-cover min-h-[70vh] text-white
+     bg-[url("https://images.pexels.com/photos/4911937/pexels-photo-4911937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")]
+     '>
+      <h1 data-aos="fade-up" data-aos-delay="100" 
+      className='text-center lora text-[55px] tracking-[3px] text-red-500'> 
+        🛠️ Admin Login Portal</h1>
+      <p data-aos="fade-up" data-aos-delay="200"  className='caveat-fancyFont text-[35px] '>Login to your account and access Dashboard</p>
+     </section>
+
+
+
+
+
+
+
+       <div className="max-w-screen overflow-x-hidden flex justify-center items-center min-h-screen h-fit relative bg-fixed bg-no-repeat bg-center bg-cover 
+   bg-[url('https://images.pexels.com/photos/4911937/pexels-photo-4911937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')]">
      
     
     
      <form
   action=""
   className="bg-[rgba(1,1,1,0.41)] text-white p-8 rounded-lg shadow-[0px_0px_10px_0px_white] w-full px-10  
-    mx-auto max-w-sm backdrop-blur-[7px] text-[20px] flex flex-col space-y-6 items-center text-center"
+    mx-auto max-w-sm backdrop-blur-[2px] text-[20px] flex flex-col space-y-6 items-center text-center"
 >
-  <h2 className="text-3xl font-bold mb-4">Login</h2>
+  <h2 className="text-3xl font-bold mb-4 lora">Admin Login</h2>
 
   <div className="w-full">
     <label htmlFor="email" className="flex items-center space-x-2 mb-2">
@@ -94,6 +118,8 @@ function AdminAuth() {
 </form>
      
    </div>
+    </main>
+  
   )
 }
 

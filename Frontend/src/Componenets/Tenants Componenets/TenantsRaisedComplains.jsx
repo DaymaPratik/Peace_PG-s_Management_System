@@ -45,19 +45,19 @@ function TenantsRaisedComplains({
   };
   let delay = 100;
   return (
-    <main className=" mx-auto space-y-6">
+    <main className="caveat-fancyFont mx-auto relative space-y-6">
       <h1
         data-aos="fade-up"
         data-aos-delay="100"
-        className="text-center  text-[35px] font-bold
+        className="text-center  lora text-[25px] sm:text-[30px] tracking-[3px] md:text-[35px] font-bold
           text-[#f09b9b] w-full bg-[#2a122e20]  backdrop-blur-2xl py-10"
       >
         📋 All Complaints Raised Details....
       </h1>
-      <section className="grid grid-cols-2 gap-5 justify-items-center p-5 px-10 ">
+      <section className="grid grid-cols-1 sm:grid-cols-2 gap-3 justify-items-center items-center pb-15 p-5 px-5 ">
         {tenatsRaisedComplaintsArray.length === 0 ? (
           <p
-            className="text-center text-[#f09b9b]"
+            className="text-center absolute  w-full text-[#f09b9b] lora text-[30px] sm:text-[35px] tracking-[3px] md:text-[40px] font-bold"
             data-aos="fade-up"
             data-aos-delay="200"
           >
@@ -71,16 +71,16 @@ function TenantsRaisedComplains({
                 data-aos="fade-left"
                 data-aos-delay={delay}
                 key={idx}
-                className="border rounded-2xl shadow p-5 text-[#f09b9b] 
+                className="text-[20px] md:text-[25px] rounded-2xl shadow p-5 text-[#f09b9b] 
                 bg-[#2a122e20]  backdrop-blur-md w-[90%] mx-auto space-y-3"
               >
                 <div className="flex justify-between items-center">
-                  <h3 className="text-xl font-semibold flex items-center gap-2">
-                    <MdPerson className="text-red-500" />
+                  <h3 className="  text-[25px] lg:text-[35px] flex items-center gap-2">
+                    <MdPerson className="text-red-500 " />
                     {complaint.name}
                   </h3>
                   <span
-                    className={`px-3 py-1 text-sm rounded-full font-semibold ${
+                    className={`px-3 py-1 text-[20px] rounded-full font-semibold ${
                       complaint.status === "Resolved"
                         ? "bg-green-100 text-green-700"
                         : "bg-yellow-100 text-yellow-700"
@@ -95,20 +95,22 @@ function TenantsRaisedComplains({
                   {complaint.email}
                 </p>
 
-                {complaint.roomNumber && (
+              
+
+                  <p className="flex items-center gap-2 ">
+                    <MdCategory className="text-red-500 text-[20px]" />
+                    <span className="text-red-500">Category: </span>{" "}
+                    {complaint.category}
+                  </p>
+
+                <div className="grid grid-cols-1 text-[17px] md:grid-cols-2 gap-2">
+                  {complaint.roomNumber && (
                   <p className=" flex items-center gap-2">
                     <MdRoom className="text-red-500" />
                     <span className="text-red-500"> Room:</span>{" "}
                     {complaint.roomNumber}
                   </p>
                 )}
-
-                <div className="grid grid-cols-2 gap-4">
-                  <p className="flex items-center gap-2 ">
-                    <MdCategory className="text-red-500" />
-                    <span className="text-red-500">Category: </span>{" "}
-                    {complaint.category}
-                  </p>
                   <p className="flex items-center gap-2 ">
                     <AiOutlineExclamationCircle className="text-red-500" />
                     <span className="text-red-500">Urgency:</span>{" "}
@@ -120,7 +122,7 @@ function TenantsRaisedComplains({
                   <p className="flex items-center gap-2 font-medium text-red-500">
                     <FaRegCommentDots className="text-red-500" /> Description:
                   </p>
-                  <p className="bg-[#271717a9] rounded p-2">
+                  <p className="bg-[#c04040a9] rounded p-2">
                     {complaint.description}
                   </p>
                 </div>
@@ -129,7 +131,7 @@ function TenantsRaisedComplains({
                   onClick={() => {
                     deleteComplaintFunction(complaint._id);
                   }}
-                  className="bg-[#e82727e2] hover:scale-[105%] transition ease-in px-5 py-2 text-[25px] font-bold
+                  className="bg-[#e82727e2] hover:scale-[105%] transition ease-in px-2 sm:px-5 py-2 text-[20px] sm:text-[25px] font-bold
       hover:bg-[#ff0000] flex justify-center items-center w-fit mx-auto text-white rounded-sm "
                 >
                   <MdOutlineDeleteForever />

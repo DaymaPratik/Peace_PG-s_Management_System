@@ -84,62 +84,62 @@ const handleAmunnitiesAvailFunction = (e) => {
   
 
   return (
-    <div className='w-full py-10'
-     data-aos="fade-left"
-    >
-      <div className='text-[#f09b9b] w-full bg-[#2a122e0a] backdrop-blur-sm py-5 shadow-xl'  >
-        <h2 className='text-5xl text-center  font-bold  py-5'>Add a new Building To Service</h2>
+   <main className='caveat-fancyFont bold'>
+     <div className='text-[#f09b9b] w-full bg-[#2a122e0a] backdrop-blur-sm py-5 shadow-xl'  >
+        <h2 className='text-3xl tracking-[5px] md:text-5xl lora text-center  font-bold  py-5'>Add a new Building To Service</h2>
       </div>
-
-
-
-      <section data-aos="fade-right" className="w-[89%]  ml-20 bg-gradient-to-l text-[#f09b9b] backdrop-blur-md from-[#360c6561] to-[#00b5f269]  shadow-xl rounded-lg p-8 mt-10">
-      <h2 className="text-4xl mx-auto font-extrabold text-center mb-6 w-fit px-5 border-b-4 text-green-500 border-green-500">Add Building Details</h2>
+    <section className='w-full py-10 flex justify-center items-center px-10'
+    >
+        
+      <section data-aos="fade-left" data-aos-duration="2000"
+       className="bg-gradient-to-l text-[#f09b9b] backdrop-blur-sm w-[90%] sm:w-[80%] lg:w-[65%]
+      from-[#360c6561] to-[#b922f540]  shadow-xl rounded-lg p-5 mt-10">
+      <h2 className="text-3xl md:text-4xl mx-auto font-extrabold text-center mb-6 w-fit px-5 border-b-4 text-green-500 border-green-500">Add Building Details</h2>
       <form onSubmit={addNewBuildingFunction} className="space-y-2 text-md">
         <div>
-          <label htmlFor="name" className="block mb-1 text-2xl font-medium">Building Name</label>
+          <label htmlFor="name" className="block mb-1 text-xl ">Building Name</label>
           <input
             type="text"
             id="name"
             name="name"
             value={buildingDetails.name}
             onChange={handleChange}
-            className="w-full focus:border-none border-1 border-[#f09b9b]  p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
+            className="w-full focus:border-none border-1 border-[#f09b9b] px-2  py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
             required
           />
         </div>
 
-        <div className='flex  gap-5  flex-wrap px-2 py-2 '>
-          <label htmlFor="floors" className=" text-2xl w-[30%] font-medium">Number of Floors
+        <div className='flex flex-wrap gap-2 py-2 items-center'>
+          <label htmlFor="floors" className=" text-xl w-[30%] ">Number of Floors
           <input
             type="number"
             id="floors"
             name="floors"
             value={buildingDetails.floors}
             onChange={handleChange}
-            className="w-[50%] block mt-3 focus:border-none border-1 border-[#f09b9b]  p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
+            className="w-[50%] block mt-3 focus:border-none border-1 border-[#f09b9b]  px-2  py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
             required
           />
           </label>
-          <label htmlFor="flatsPerFloor" className=" text-2xl w-[30%] font-medium">Flats per Floor
+          <label htmlFor="flatsPerFloor" className=" text-xl w-[30%] ">Flats per Floor
           <input
             type="number"
             id="flatsPerFloor"
             name="flatsPerFloor"
             value={buildingDetails.flatsPerFloor}
             onChange={handleChange}
-            className="w-[50%] block mt-3 focus:border-none border-1 border-[#f09b9b]  p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
+            className="w-[50%] block mt-3 focus:border-none border-1 border-[#f09b9b]  px-2  py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
             required
           />
           </label>
-          <label htmlFor="bedsPerFloor" className="text-2xl w-[30%] font-medium">Beds per Floor
+          <label htmlFor="bedsPerFloor" className="text-xl w-[30%] ">Beds per Floor
           <input
             type="number"
             id="bedsPerFloor"
             name="bedsPerFloor"
             value={buildingDetails.bedsPerFloor}
             onChange={handleChange}
-            className="w-[50%] block mt-3 focus:border-none border-1 border-[#f09b9b]  p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
+            className="w-[50%] block mt-3 focus:border-none border-1 border-[#f09b9b] px-2  py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
             required
           />
           </label>
@@ -149,13 +149,14 @@ const handleAmunnitiesAvailFunction = (e) => {
        
 
         <div>
-          <label htmlFor="address" className="block text-2xl mb-1 font-medium">Building Address</label>
+          <label htmlFor="address" className="block text-xl mb-1 font-medium">Building Address</label>
           <textarea
             id="address"
             name="address"
             value={buildingDetails.address}
             onChange={handleChange}
-            className="w-full focus:border-none border-1 border-[#f09b9b]  p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
+            className="w-full focus:border-none border-1 border-[#f09b9b]  px-2  py-1
+            rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
             rows="3"
             required
           />
@@ -163,16 +164,16 @@ const handleAmunnitiesAvailFunction = (e) => {
 
 
         <div>
-          <label className="block text-2xl mb-2 font-medium">Types of Flats Available</label>
-          <div className="flex flex-wrap text-2xl gap-6">
+          <label className="block text-xl mb-2 font-medium">Types of Flats Available</label>
+          <div className="flex flex-wrap text-xl gap-3">
             {flatOptions.map((type) => (
-              <label key={type} className="flex cursor-pointer items-center gap-2">
+              <label key={type} className="flex cursor-pointer items-center gap-1">
                 <input
                   type="checkbox"
                   value={type}
                 //   checked={buildingDetails.flatTypes.includes(type)}
                   onChange={handleFlatTypeChange}
-                  className="accent-amber-600 bg-indigo-500 size-[20px] "
+                  className="accent-amber-600 bg-indigo-500 size-[15px] "
                 />
                 {type}
               </label>
@@ -180,16 +181,16 @@ const handleAmunnitiesAvailFunction = (e) => {
           </div>
           </div>
           <div>
-          <label className="block text-2xl mb-2 font-medium ">Types of Ammunities Available</label>
-          <div className="flex flex-wrap text-2xl gap-8">
+          <label className="block text-xl mb-2 font-medium ">Types of Ammunities Available</label>
+          <div className="flex flex-wrap text-xl gap-5">
             {typesOfAmmunitiesArray.map((type) => (
-              <label key={type} className="flex cursor-pointer items-center gap-2">
+              <label key={type} className="flex cursor-pointer items-center gap-1">
                 <input
                   type="checkbox"
                   value={type}
                 //   checked={buildingDetails.ammunities.includes(type)}
                   onChange={handleAmunnitiesAvailFunction}
-                  className="accent-amber-600 size-[20px] "
+                  className="accent-amber-600 size-[15px] "
                 />
                 {type}
               </label>
@@ -199,13 +200,25 @@ const handleAmunnitiesAvailFunction = (e) => {
 
         <button
           type="submit"
-          className="w-fit block mx-auto px-5 py-3 bg-blue-600 text-white  rounded-md hover:bg-blue-700 transition duration-200"
+          className="w-fit block mx-auto px-5 py-3 bg-[#210e4f63]   hover:shadow-[0px_0px_10px_#220e4f] shadow-[0px_0px_5px_white]
+     hover:bg-black hover:scale-[105%]  ease-in rounded transition"
         >
           Submit Building Details
         </button>
       </form>
       </section>
-    </div>
+
+ {/* <div  data-aos="fade-right" data-aos-duration="2000"  className='border-2 bg-transparent block  w-[30%] '>
+  <img src="/form12.jpg"
+alt="" 
+ className=' w-[100%] h-[700px]' />
+ </div> */}
+    </section>
+
+
+
+
+   </main>
   );
 }
 

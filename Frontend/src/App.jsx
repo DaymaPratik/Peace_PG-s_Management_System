@@ -12,13 +12,19 @@ import BuildingContextProvider from "./Context/BuildingContextProvider";
 import UserContextProvider from "./Context/UserContextProvider";
 import { ToastContainer,Zoom } from "react-toastify";
 import TenantDashboard from "./Pages/TenantDashboard";
+import SideBar from "./Componenets/SideBar";
+import SideBarContextProvider from "./Context/SideBarContextProvider";
+import Footer from "./Componenets/Footer";
 function App() {
   return (
     <BrowserRouter>
       <UserContextProvider>
         <BuildingContextProvider>
           <AdminContextProvider>
-            <Navbar />
+           <SideBarContextProvider>
+             <main className="overflow-x-hidden">
+              <Navbar />
+             <SideBar/>
             <ToastContainer
               position="top-center"
               autoClose={3000}
@@ -43,6 +49,9 @@ function App() {
               <Route path="/api/tenantAuth" element={<TenantAuth />} />
               <Route path="/api/tenantDashBoard" element={<TenantDashboard />} />
             </Routes>
+             </main>
+             <Footer/>
+           </SideBarContextProvider>
           </AdminContextProvider>
         </BuildingContextProvider>
       </UserContextProvider>

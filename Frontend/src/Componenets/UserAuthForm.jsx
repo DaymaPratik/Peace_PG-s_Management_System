@@ -3,7 +3,12 @@ import { FaUser, FaEnvelope, FaLock, FaPhone, FaMapMarkedAlt } from 'react-icons
 import { UserContext } from '../Context/UserContextProvider';
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 function UserAuthForm() {
+  useEffect(()=>{
+    AOS.init();
+  },[])
     const [isRegistering, setIsRegistering] = useState(true);
     const {userDetailsObj,setUserDetailsObj}=useContext(UserContext);
     const navigate=useNavigate();
@@ -91,11 +96,11 @@ function UserAuthForm() {
     },[userDetailsObj])
   
     return (
-      <div className="flex justify-center items-center min-h-screen
+      <div  className="flex justify-center caveat-fancyFont  items-center min-h-screen
       bg-cover bg-fixed bg-center bg-no-repeat
-      bg-[url('https://images.pexels.com/photos/220118/pexels-photo-220118.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')] p-4">
-        <div className="w-full max-w-md bg-[#0000005f] text-white backdrop-blur-xs rounded-2xl shadow-xl p-8 space-y-6">
-          <h2 className="text-3xl font-bold text-center ">
+      bg-[url('https://images.pexels.com/photos/1366957/pexels-photo-1366957.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')] p-4">
+        <div  data-aos="zoom-in-up" className="w-full max-w-md bg-[#0000005f] text-white backdrop-blur-xs rounded-2xl shadow-xl p-8 space-y-6">
+          <h2 className="text-3xl lora text-red-500 tracking-[5px] font-bold text-center ">
             {isRegistering ? 'Create Account' : 'Login'}
           </h2>
           <form onSubmit={handleSubmit} className="space-y-4 ">
@@ -172,7 +177,7 @@ function UserAuthForm() {
             </button>
           </form>
   
-          <p className="text-center text-sm ">
+          <p className="text-center text-[30px] ">
             {isRegistering ? 'Already have an account?' : "Don't have an account?"}
             <button
               onClick={() => setIsRegistering(!isRegistering)}

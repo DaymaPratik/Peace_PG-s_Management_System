@@ -59,6 +59,8 @@ function GetAllFlatsDetails() {
  const toggleAddNewFlatValue=()=>{
     setAddNewFlat(!addNewFlat)
  }
+  // let delay=0;
+
   return (
     <>
       {addNewFlat ? (
@@ -66,10 +68,10 @@ function GetAllFlatsDetails() {
       ) : (
         <main>
             <section
-            className="bg-gradient-to-r text-[#f09b9b] bg-[#b922f540] backdrop-blur-sm p-8 rounded-2xl shadow-md text-center max-w-3xl mx-auto mb-10"
-            data-aos="fade-down"
+            className="bg-gradient-to-r text-[#f09b9b] caveat-fancyFont bg-[#b922f540] backdrop-blur-sm p-8 rounded-2xl shadow-md text-center max-w-3xl mx-auto mb-10"
+            data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"
           >
-            <h2 className="text-3xl text-[#00b7ff] font-extrabold  mb-2">
+            <h2 className="text-3xl text-[#00b7ff] font-extrabold lora mb-2">
               Add A New Flat
             </h2>
             <p className=" mb-6 text-lg  text-[#ff0000]">
@@ -84,19 +86,18 @@ function GetAllFlatsDetails() {
             </button>
           </section>
 
-          <section className="grid grid-cols-2 p-10 gap-5 ">
-
+          <section className="grid grid-cols-1 caveat-fancyFont bold sm:grid-cols-2 lg:grid-cols-3 p-5 gap-5 ">
 
             {flats.map((flat, idx) => {
               return (
                 <div
                   key={idx}
-                  className="bg-gradient-to-r text-[#f09b9b] bg-[#b922f540] backdrop-blur-sm
+                  className="bg-gradient-to-r text-[#f09b9b] bg-[#b922f540] backdrop-blur-xs
                     rounded-2xl shadow-lg p-6 w-full max-w-md mx-auto transition-transform transform hover:scale-105"
-                  data-aos="fade-up"
+                  data-aos="fade-left" data-aos-duration="100"
                 >
-                  <div className="flex justify-between items-center mb-4">
-                    <h2 className="text-xl font-bold text-[#ff0000]">
+                  <div className="flex bold text-[25px] lora justify-between items-center mb-4">
+                    <h2 className="text-xl text-[#ff0000]">
                       {flat.name}
                     </h2>
                     <button
@@ -113,9 +114,14 @@ function GetAllFlatsDetails() {
                   <p className=" mb-2">
                     <strong>Floor No:</strong> {flat.floorNo}
                   </p>
-                  <p className="mb-4 flex items-center">
-                    <FaBed className="mr-2 text-blue-500" /> {flat.beds} Beds
+                 <div className="flex flex-wrap items-center justify-between">
+                   <p className="mb-4 flex items-center">
+                    <FaBed className="mr-2 text-blue-500" /> {flat.beds} Total Beds
                   </p>
+                  <p className="mb-4 flex items-center">
+                    <FaBed className="mr-2 text-blue-500" /> {flat.availableBeds} Available Beds
+                  </p>
+                 </div>
 
                   <div className="">
                     <strong className="flex items-center mb-2">

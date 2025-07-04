@@ -70,10 +70,10 @@ function Complaints() {
       >
         📋 All Raised Complaints Details....
       </h1>
-      <section className="grid grid-cols-2 gap-5  justify-items-center p-5 px-10 ">
+      <section className="grid grid-cols-2 gap-5 relative justify-items-center p-5 px-10 ">
         {complaintsArray.length === 0 ? (
           <p
-            className="text-center text-[#f09b9b]"
+            className="text-center absolute w-fit shadow-[0px_0px_10px_#f09b9b] left-[50%] translate-x-[-50%] mt-10 top-[60%]   py-10 text-6xl backdrop-blur-xs tracking-[5px] lora text-[#f09b9b]"
             data-aos="fade-up"
             data-aos-delay="200"
           >

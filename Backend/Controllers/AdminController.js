@@ -1,6 +1,7 @@
 const AdminModel=require("../Model/AdminModel")
 const GaurdModel=require("../Model/GaurdModel")
 const StaffModel=require('../Model/StaffModel')
+const TenantModel=require("../Model/TenantModel");
 const ComplainsModel=require('../Model/ComplainsModel')
 const bc=require("bcryptjs");
 const adminLoginFunction=async(req,res)=>{
@@ -200,6 +201,20 @@ try {
         })
     }
 }
+
+
+
+// const getBedRequestDetailsFunction=async(req,res)=>{
+//     try {
+//         const bedRequestDetailsArray=await TenantModel.find({})
+//     } catch (error) {
+//         console.log("Error in getting all the bed request form details backend",error);
+//         res.json({
+//             success:false,
+//             message:"Error in getting all the bed request form details backend"
+//         })
+//     }
+// }
 
 module.exports={adminLoginFunction,adminRegisterFunction,getGaurdDetailsFunction,addNewGaurdFunction,getAllRaiseComplaintsFunction,
     addNewStaffDetailsFunction,deleteGaurdFunction,getStaffDetailsFunction,getStaffDetailsFunction,deleteNewStaffDetailsFunction}

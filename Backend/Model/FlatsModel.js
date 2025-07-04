@@ -9,7 +9,7 @@ const FlatsSchema=new mongoose.Schema({
     required:true
   },
   beds:{
-    type:String,
+    type:Number,
 },
   tenants:{
     type:Array,
@@ -24,8 +24,8 @@ const FlatsSchema=new mongoose.Schema({
     type:String,
     
   },
-  avialableBeds:{
-    type:String,
+  availableBeds:{
+    type:Number,
   }
 })
 const FlatDetailsModel=mongoose.model('Flat_Details', FlatsSchema)

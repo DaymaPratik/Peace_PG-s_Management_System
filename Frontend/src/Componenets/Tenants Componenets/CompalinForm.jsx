@@ -78,19 +78,19 @@ function CompalinForm({ getAllRaisedComplaintsFunction }) {
       >
         <h1 
         data-aos="fade-up" data-aos-delay="150"
-        className="text-[45px] font-bold">Wanna Register A Complain ?</h1>
+        className="lora text-[35px] md:text-[40px] lg:text-[45px] font-bold">Wanna Register A Complain ?</h1>
 
-        <pre data-aos="fade-up" data-aos-delay="300">
+        <pre data-aos="fade-up" data-aos-delay="300" className="lora">
           We care for your issuses ! All Raised Problem will be solved shortly
           ...
         </pre>
         <p
         data-aos="fade-up" data-aos-delay="450"
-        className="flex justify-center items-center gap-2">
+        className="flex justify-center items-center gap-2 caveat-fancyFont text-[40px]">
           <MdKeyboardDoubleArrowDown className="text-white text-[30px]" />
-          <TbAd2 className="text-white text-[30px]" />
+          <TbAd2 className="text-white  " />
           Fill The Form Given Below
-          <MdKeyboardDoubleArrowDown className="text-white text-[30px]" />
+          <MdKeyboardDoubleArrowDown className="text-white " />
         </p>
       </section>
 
@@ -99,13 +99,13 @@ function CompalinForm({ getAllRaisedComplaintsFunction }) {
 
       <section 
       className="my-10 p-5 w-full shadow-[0px_0px_7px_#2a122e14] max-w-2xl mx-auto bg-[#2a122e14] rounded-xl text-white backdrop-blur-xs  ">
-        <h2 className="text-2xl font-bold text-center mb-4" data-aos="fade-up" data-aos-delay="100">
+        <h2 className="text-2xl lora tracking-[3px] font-bold text-center mb-4" data-aos="fade-up" data-aos-delay="100">
           📝 PG Complaint Form
         </h2>
         <form
           className="
-         grid grid-cols-2
-         gap-y-4 p-6  mx-auto  gap-2"
+         grid grid-cols-1 min-[450px]:grid-cols-2
+         gap-y-4 p-6 caveat-fancyFont text-[20px] sm:text-[25px] mx-auto  gap-2"
         >
           <div className="flex items-center border bg-transparent p-2 rounded" data-aos="fade-left" data-aos-delay="200">
             <FaUser className="mr-2 text-[#ff0000] text-[30px]" />
@@ -178,7 +178,7 @@ function CompalinForm({ getAllRaisedComplaintsFunction }) {
           </div>
         </form>
 
-        <div className="flex items-start border p-2 rounded w-[90%] mx-auto mb-5 my-3" data-aos="fade-up" data-aos-delay="100">
+        <div className="flex items-start border caveat-fancyFont p-2 rounded w-[90%] mx-auto mb-5 my-3" data-aos="fade-up" data-aos-delay="100">
           <FaRegCommentDots className="mr-2 mt-1 text-[#ff0000] text-[30px]" />
           <textarea
             name="description"
@@ -192,9 +192,9 @@ function CompalinForm({ getAllRaisedComplaintsFunction }) {
         </div>
 
         <button
-        data-aos="fade-up" data-aos-delay="100"
+        data-aos="fade-up" data-aos-delay="50"
           onClick={handleSubmit}
-          className="bg-blue-600 text-white px-4 py-2 w-fit block mx-auto rounded hover:bg-blue-700 transition"
+          className="bg-blue-600 lora text-white px-4 py-2 w-fit block mx-auto rounded hover:bg-blue-700 transition"
         >
           Submit Complaint
         </button>

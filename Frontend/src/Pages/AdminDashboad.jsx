@@ -14,6 +14,7 @@ import GetGaurdsDetails from '../Componenets/AdminComponenets/GetGaurdsDetails';
 import GetAllStaffDetails from '../Componenets/AdminComponenets/GetAllStaffDetails';
 import AOS from "aos";
 import "aos/dist/aos.css";
+import BedRequestDetails from '../Componenets/AdminComponenets/BedRequestDetails';
 
 function AdminDashboad() {
   const {adminDetails}=useContext(AdminDetailsContext);
@@ -56,6 +57,9 @@ function AdminDashboad() {
         }
         case "GetAllFlatDetails":{
            return <GetAllFlatsDetails/>
+        }
+        case "GetBedRequestDetails":{
+           return <BedRequestDetails/>
         }
         default:
       }
@@ -146,6 +150,12 @@ function AdminDashboad() {
        bg-[#6718fb63] hover:bg-[#ff00004e]'
       onClick={()=>{setRenderComponenet("")}}
       >9. Admin Dashboard</p>
+       <p 
+      data-aos="fade-up" data-aos-delay={delay+900}
+      className=' rounded shadow-[0px_0px_5px_white] h-fit  cursor-pointer text-white hover:shadow-[0px_0px_5px_red] p-3 px-2 hover:scale-[105%] transition ease-in md:px-5 backdrop-blur-md
+       bg-[#6718fb63] hover:bg-[#ff00004e]'
+      onClick={()=>{setRenderComponenet("GetBedRequestDetails")}}
+      >10. All Beds Request</p>
    </main>
 
 

@@ -1,18 +1,26 @@
 
 import UserAuthForm from '../Componenets/UserAuthForm';
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from 'react';
 
+ 
 function TenantAuth() {
-  
+   useEffect(()=>{
+    AOS.init();
+  },[])
   
   return (
     
    
       <main>
         <section className='h-[70vh] bg-fixed w-full text-white flex flex-col justify-center items-center
-        bg-[url("https://images.unsplash.com/photo-1492573637402-25691cd9eac2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")]
+        bg-[url("https://images.pexels.com/photos/1366957/pexels-photo-1366957.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")]
           bg-center bg-cover bg-no-repeat text-center'>
-          <h1 className='text-4xl font-bold'>Get your beds in Our PG</h1>
-          <p className='text-[25px] font-medium'>Fill the form below and submit to book your beds in our pg</p>
+          <h1 data-aos="fade-up" data-aos-delay="100" className='text-5xl font-bold lora tracking-[5px] text-red-500'>Tenant Login / Registration</h1>
+          <p data-aos="fade-up" data-aos-delay="200" className='text-[25px] font-medium caveat-fancyFont '>Manage your profile, connect to flats,
+             and access personalized features — all with secure authentication.</p>
+          <p data-aos-delay="300" data-aos="fade-up" className='text-[35px] font-medium caveat-fancyFont text-red-500'>Create your account to get full control...</p>
         </section>
 
 

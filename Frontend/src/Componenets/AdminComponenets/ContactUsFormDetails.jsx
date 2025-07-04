@@ -63,11 +63,11 @@ useEffect(() => {
   }
    let delay=0;
   return (
-     <main>
-      <h2 className="text-4xl py-10 font-bold backdrop-blur-sm text-[#f09b9b] bg-[#00b5f234] text-center mb-6">
+     <main className="caveat-fancyFont">
+      <h2 className="text-2xl min-[400px]:text-3xl sm:text-4xl py-10 lora tracking-[2px] sm:tracking-[5px] font-bold backdrop-blur-sm text-[#f09b9b] bg-[#00b5f234] text-center mb-6">
         All Contatct-Us Form Details
       </h2>
-    <section className="min-h-[50vh] grid grid-cols-3 gap-10 p-10 h-fit w-full ">
+    <section className="min-h-[50vh] grid grid-cols-1 min-[500px]:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-10 p-5 md:p-10 h-fit w-full ">
 
   
       {contactUsArray.map((item, idx) => {
@@ -75,27 +75,29 @@ useEffect(() => {
         return (
           <div
             key={idx}  data-aos="fade-left" data-aos-delay={delay}
-            className="w-full h-fit max-w-md border border-gray-300 shadow-lg rounded-2xl bg-[#00ddff1f] p-5 space-y-4 text-[#f09b9b] hover:shadow-2xl transition-shadow duration-300"
+            className="w-full h-fit backdrop-blur-xs max-w-md shadow-[0px_0px_5px_#f09b9b] text-lg xl:text-3xl sm:text-2xl  rounded-2xl 
+            bg-[#1b063e1f] p-5 space-y-4 text-[#f09b9b] hover:scale-[105%] hover:shadow-[0px_0px_10px_red] transition-shadow duration-300"
           >
             <div className="flex items-center space-x-3">
-              <FaUser className="text-blue-600 text-xl" />
-              <p className="text-lg font-semibold">Name: {item.name}</p>
+              <FaUser className="text-blue-600 " />
+              <p className=" font-semibold">Name: {item.name}</p>
             </div>
             <div className="flex items-center space-x-3">
-              <FaEnvelope className="text-red-500 text-xl" />
-              <p className="text-lg">Email: {item.email}</p>
+              <FaEnvelope className="text-red-500" />
+              <p className="">Email: {item.email}</p>
             </div>
             <div className="flex items-center space-x-3">
-              <FaPhone className="text-green-600 text-xl" />
-              <p className="text-lg">Mobile: {item.mobile}</p>
+              <FaPhone className="text-green-600" />
+              <p className="">Mobile: {item.mobile}</p>
             </div>
             <div className="flex items-center space-x-3">
-              <FaCommentDots className="text-purple-500 text-xl" />
-              <p className="text-lg">Enquiry: {item.enquiry}</p>
+              <FaCommentDots className="text-purple-500 " />
+              <p className="">Enquiry: {item.enquiry}</p>
             </div>
             <div 
             onClick={()=>{contactFormDeteleFunction(item._id)}}
-            className="flex items-center space-x-3 cursor-pointer  bg-red-500 w-fit px-4 py-3 mx-auto">
+            className="flex items-center space-x-3 cursor-pointer rounded bg-red-500 transition
+             hover:bg-[#2c1f3960] hover:shadow-[0px_0px_3px_#f09b9b] w-fit px-4 py-3 mx-auto ease-in hover:scale-[105%] ">
               <RiDeleteBin6Line className="text-white mr-2 text-2xl" />
               Delete
             </div>

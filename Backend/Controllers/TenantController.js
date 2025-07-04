@@ -18,116 +18,143 @@ const getTenantsDetaislFunction=async (req,res)=>{
     }
 }
 
+const addNewTenantDetailsFunction = async (req, res) => {
+  const {
+    name,
+    email,
+    bedNo,
+    flatNumber,
+    buildingName,
+    floor,
+    flatType,
+    ...rest
+  } = req.body;
 
+  try {
+    // Check if email or bed is already taken
+    const [emailExists, bedExists] = await Promise.all([
+      TenantModel.findOne({ email }),
+      TenantModel.findOne({ bedNo })
+    ]);
 
-const addnewTenantDetailsFunction=async(req,res)=> {
-    console.log("BODY PART",req.body);
-   const {name,
-          email,
-          mobile,
-          address,
-          city,
-          state,
-          gender,
-          flatType,
-          floor,
-          bedNo,
-          buildingName,
-          flatNumber,
-          feesAllotted,
-          admissionDate}=req.body
-    try {
-        const ifEmailOfTenantExists=await TenantModel.findOne({email})
-        if(ifEmailOfTenantExists){
-            return res.status(400).json({
-                success:false,
-                message:"Email of Tenant already exists"
-            })
-        }
+    if (emailExists)
+      return res.status(400).json({ success: false, message: "Email already exists" });
 
-        const ifBedNoOfTenantExists=await TenantModel.findOne({bedNo});
-        if(ifBedNoOfTenantExists){
-            return res.status(400).json({
-                success:false,
-                message:"Bed of Tenant already booked"
-            })
-        }
+    if (bedExists)
+      return res.status(400).json({ success: false, message: "Bed already booked" });
 
+    // Check flat
+    let flat = await FlatDetailsModel.findOne({ flatNumber });
 
+    if (!flat) {
+      const building = await BuildingModel.findOne({ name: buildingName });
+      if (!building) {
+        return res.status(400).json({ success: false, message: "Building not found" });
+      }
 
-        const newTenantDetails=await TenantModel.create(req.body);
-        const updatedBuildingDetails=await BuildingModel.findOneAndUpdate(
-            {name:newTenantDetails.buildingName},
-             { $inc: { availableBeds: -1 } },
-             {new:true}
-        )
-           console.log(updatedBuildingDetails);
-           
-        // const buildingObject=await BuildingModel.find({buildingName});
-        // console.log(buildingObject.bedsPerFloor,buildingObject.flatsPerFloor);
-        // let y=buildingObject.flatsPerFloor
-        // let x=buildingObject.bedsPerFloor;
-        const bedsPerFlat=updatedBuildingDetails.bedsPerFloor/updatedBuildingDetails.flatsPerFloor;
-        console.log(bedsPerFlat);
-        
+      const bedsPerFlat = building.bedsPerFloor / building.flatsPerFloor;
 
-        let flat = await FlatDetailsModel.findOne({ flatNumber });
-    
-        // ✅ Step 3: If not, create new flat
-        if (!flat) {
-       
-        flat = await FlatDetailsModel.create({
+      // Create new flat
+      flat = await FlatDetailsModel.create({
         flatNumber,
         floorNo: floor,
-        beds:bedsPerFlat , // You can update this as per actual data
-        tenants: [newTenantDetails.name],
+        beds: bedsPerFlat,
+        availableBeds: bedsPerFlat, // Don't reduce here!
+        tenants: [],
         flatType,
-        name: buildingName,
-         });
-       } else {
-         // ✅ Step 4: Flat exists, push tenant name
-          await FlatDetailsModel.findOneAndUpdate(
-          { flatNumber },
-          { $push: { tenants: newTenantDetails.name } },
-          { new: true }
-      );
+        name: buildingName
+      });
     }
+
+    // Flat exists — check if full
+    if (flat.availableBeds === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Flat is full, please create a new flat"
+      });
+    }
+
+    // Create tenant
+    const newTenantDetails = await TenantModel.create({
+      name,
+      email,
+      bedNo,
+      flatNumber,
+      buildingName,
+      floor,
+      flatType,
+      ...rest
+    });
+
+    // Update flat and building after tenant creation
+    await Promise.all([
+      FlatDetailsModel.findOneAndUpdate(
+        { flatNumber },
+        { $push: { tenants: name }, $inc: { availableBeds: -1 } }
+      ),
+      BuildingModel.findOneAndUpdate(
+        { name: buildingName },
+        { $inc: { availableBeds: -1 } }
+      )
+    ]);
+
+    return res.status(200).json({
+      success: true,
+      message: "Tenant added successfully",
+      newTenantDetails
+    });
+  } catch (err) {
+    console.error("Error adding tenant", err);
+    return res.status(500).json({
+      success: false,
+      message: "Server error while adding tenant"
+    });
+  }
+};
+
+
+
+
+const deleteTenantDetailFunction = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedTenant = await TenantModel.findByIdAndDelete(id);
+
+    if (!deletedTenant) {
+      return res.status(404).json({
+        success: false,
+        message: "Tenant not found"
+      });
+    }
+
+    const { buildingName, flatNumber, name } = deletedTenant;
+
+    // Update flat and building
+    await Promise.all([
+      BuildingModel.findOneAndUpdate(
+        { name: buildingName },
+        { $inc: { availableBeds: 1 } }
+      ),
+      FlatDetailsModel.findOneAndUpdate(
+        { flatNumber },
+        { $pull: { tenants: name }, $inc: { availableBeds: 1 } }
+      )
+    ]);
 
     res.status(200).json({
       success: true,
-      message: "Successfully added new tenant",
-      newTenantDetails,
-      flatUpdatedOrCreated: flat,
+      message: "Successfully deleted tenant"
     });
-       
-        
-    } catch (error) {
-        console.log("Error in backed whle add new tenant",error);
-        res.status(400).json({
-            success:false,
-            message:"Error in backend while adding new tenant",
-        })
-        
-    }
-}
+  } catch (error) {
+    console.log("Error in deleting tenant", error);
+    res.status(500).json({
+      success: false,
+      message: "Server error in deleting tenant"
+    });
+  }
+};
+ 
 
-const deleteTenantDetailFunction=async(req,res)=>{
-    try {
-        const {id}=req.params;
-        const deletedTenant=await TenantModel.deleteOne({_id:id});
-        // console.log(deletedTenant);
-        res.status(200).json({
-            success:true,
-            message:"successfully deleted tenat details",
-        })
-    } catch (error) {
-        console.log("Error in deleting tenant ,backend",error);
-        res.status(400).json({
-            success:false,
-            message:"Error in deleting tenant ,backend"
-        })
-    }
-}
 
 
 
@@ -172,5 +199,5 @@ const bedRequestFormFunction =async (req,res)=>{
     }
 }
 
-module.exports={addnewTenantDetailsFunction,getTenantsFullDetailsFuncion,
+module.exports={addNewTenantDetailsFunction,getTenantsFullDetailsFuncion,
     getTenantsDetaislFunction,bedRequestFormFunction,deleteTenantDetailFunction}

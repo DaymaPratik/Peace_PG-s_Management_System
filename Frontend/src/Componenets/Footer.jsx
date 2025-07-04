@@ -1,52 +1,43 @@
-import React, { useContext, useEffect } from 'react'
-import { Link, useNavigate } from "react-router-dom";
+import React, { useContext } from 'react'
+import { useNavigate,Link } from 'react-router-dom';
 import { AdminDetailsContext } from '../Context/AdminContextProvider';
-import { FaHome, FaPhoneAlt, FaUserCircle, FaSignInAlt, FaSignOutAlt, FaTachometerAlt } from 'react-icons/fa';
-import { toast } from "react-toastify";
-import { FaPeace } from "react-icons/fa";
-import { BiSolidFoodMenu } from "react-icons/bi";
 import { UserContext } from '../Context/UserContextProvider';
-import { MdCancelPresentation } from "react-icons/md";
+import { toast } from "react-toastify";
 import { motion } from 'framer-motion';
+import { FaPeace } from "react-icons/fa";
+import { FaHome, FaPhoneAlt, FaUserCircle, FaSignInAlt, FaSignOutAlt, FaTachometerAlt } from 'react-icons/fa';
 
-import { SideBarConext } from '../Context/SideBarContextProvider';
-function Navbar() {
-  const navigate=useNavigate();
-  const {showSideBar,setShowSideBar}=useContext(SideBarConext)
+function Footer() {
+      const navigate=useNavigate();
   const {adminDetails,setAdminDetails}=useContext(AdminDetailsContext);
   const{userDetailsObj ,handleLogout}=useContext(UserContext);
-  useEffect(()=>{
-   
-  },[])
   const logoutAdminFunction=()=>{
-      const updatedAdminDetails={
-        email:"",
-        password:"",
-        adminId:"",
-        isLogin:false
-      }
-      setAdminDetails(updatedAdminDetails)
-      sessionStorage.setItem('admin',JSON.stringify(updatedAdminDetails));
-      console.log("Admin logout",updatedAdminDetails);
-      navigate('/api/adminAuth')
-      toast.success('Admin Logout Successfull')
-      
-  }
+        const updatedAdminDetails={
+          email:"",
+          password:"",
+          adminId:"",
+          isLogin:false
+        }
+        setAdminDetails(updatedAdminDetails)
+        sessionStorage.setItem('admin',JSON.stringify(updatedAdminDetails));
+        console.log("Admin logout",updatedAdminDetails);
+        navigate('/api/adminAuth')
+        toast.success('Admin Logout Successfull')
+        
+    }
+
   return (
-    
-
-<nav className="flex caveat-fancyFont justify-between backdrop-blur-sm z-[100] fixed w-full items-center px-2 lg:px-6 py-2 
-bg-gradient-to-r  from-[#f14ef18b]  to-[#5309788b]  text-white shadow-md">
-  <section className="flex items-center space-x-2">
-    {/* <img src="" alt="" width={50} /> */}
-    <h1 className="flex lora justify-center items-center cursor-pointer gap-2 text-[30px] lg:text-[40px] font-bold tracking-[5px]">
-      <FaPeace/>
-      Peace PG's</h1>
-  </section>
-
- 
-     <ul className="flex justify-center font-bold items-center gap-4 text-[17px] lg:text-[22px] max-md:hidden">
-    <motion.div  whileTap={{scale:0.9}}>
+    <footer className='max-sm:flex max-sm:flex-wrap max-sm:justify-evenly  sm:grid sm:grid-cols-3 caveat-fancyFont justify-items-center py-10 px-2 sm:px-5 bg-fixed items-center gap-2 sm:gap-5
+     text-white bg-[#180c26]'>
+         <section className="text-[17px] md:text-[20px] space-x-2 text-center"   >
+           <h1 className="flex lora justify-center items-center cursor-pointer gap-2  text-[25px] md:text-[30px] lg:text-[45px] font-bold tracking-[5px]">
+             <FaPeace/>
+             Peace PG's</h1>
+             <p>We Care For Your Living</p>
+             <p>Affordable with the best Premier Experience</p>
+         </section>
+          <ul className="flex flex-wrap min-[400px]:flex-col justify-center font-bold  gap-4 text-[14px] md:text-[17px] lg:text-[22px] ">
+    <motion.div  className='w-fit'  whileTap={{scale:0.9}}>
     <Link to="/" className="flex items-center gap-1 px-3 py-2  bg-[#210e4f63]   hover:shadow-[0px_0px_10px_#220e4f] shadow-[0px_0px_5px_white]
      hover:bg-black hover:scale-[105%]  ease-in rounded transition">
       <FaHome />
@@ -55,7 +46,7 @@ bg-gradient-to-r  from-[#f14ef18b]  to-[#5309788b]  text-white shadow-md">
     </motion.div>
 
     {!adminDetails.isLogin && (
-        <motion.div  whileTap={{scale:0.9}}>
+        <motion.div className='w-fit'  whileTap={{scale:0.9}}>
       <Link to="/api/contactUs" className="flex items-center gap-1 px-3 py-2  bg-[#210e4f63]   hover:shadow-[0px_0px_10px_#220e4f] shadow-[0px_0px_5px_white]
      hover:bg-black hover:scale-[105%]  ease-in rounded transition">
       <FaPhoneAlt />
@@ -68,7 +59,7 @@ bg-gradient-to-r  from-[#f14ef18b]  to-[#5309788b]  text-white shadow-md">
       
         userDetailsObj.isLogin
         ?
-          <motion.div  whileTap={{scale:0.9}}>
+          <motion.div className='w-fit'  whileTap={{scale:0.9}}>
         <Link to="/api/userAuth"
         onClick={handleLogout}
          className="flex items-center gap-1 px-3 py-2  bg-[#210e4f63]   hover:shadow-[0px_0px_10px_#220e4f] shadow-[0px_0px_5px_white]
@@ -78,7 +69,7 @@ bg-gradient-to-r  from-[#f14ef18b]  to-[#5309788b]  text-white shadow-md">
       </Link>
       </motion.div>
         :
-          <motion.div  whileTap={{scale:0.9}}>
+          <motion.div className='w-fit'  whileTap={{scale:0.9}}>
         <Link to="/api/userAuth" className="flex items-center gap-1 px-3 py-2  bg-[#210e4f63]   hover:shadow-[0px_0px_10px_#220e4f] shadow-[0px_0px_5px_white]
      hover:bg-black hover:scale-[105%]  ease-in rounded transition">
         <FaUserCircle />
@@ -90,7 +81,7 @@ bg-gradient-to-r  from-[#f14ef18b]  to-[#5309788b]  text-white shadow-md">
     )}
     
     {adminDetails.isLogin && (
-       <motion.div  whileTap={{scale:0.9}}>
+       <motion.div className='w-fit'  whileTap={{scale:0.9}}>
       <Link to="/api/adminDashboard" className="flex items-center gap-1 px-3 py-2  bg-[#210e4f63]  hover:shadow-[0px_0px_10px_#220e4f] shadow-[0px_0px_5px_white]
      hover:bg-black hover:scale-[105%]  ease-in rounded transition">
         <FaTachometerAlt />
@@ -101,7 +92,7 @@ bg-gradient-to-r  from-[#f14ef18b]  to-[#5309788b]  text-white shadow-md">
 
     {adminDetails.isLogin ? (
 
-      <motion.div whileTap={{scale:0.9}}> 
+      <motion.div className='w-fit'  whileTap={{scale:0.9}}> 
         <li
         onClick={logoutAdminFunction}
         className="flex items-center gap-1 px-3 py-2  bg-[#210e4f63]   hover:shadow-[0px_0px_10px_#220e4f] shadow-[0px_0px_5px_white]
@@ -114,7 +105,7 @@ bg-gradient-to-r  from-[#f14ef18b]  to-[#5309788b]  text-white shadow-md">
     ) : (
      
       !userDetailsObj.isLogin &&(
-         <motion.div  whileTap={{scale:0.9}}>
+         <motion.div className='w-fit'  whileTap={{scale:0.9}}>
          <Link to="/api/adminAuth" className="flex items-center gap-1 px-3 py-2  bg-[#210e4f63]  ] hover:shadow-[0px_0px_10px_#220e4f] shadow-[0px_0px_5px_white]
      hover:bg-black hover:scale-[105%]  ease-in rounded transition">
         <FaSignInAlt />
@@ -129,7 +120,7 @@ bg-gradient-to-r  from-[#f14ef18b]  to-[#5309788b]  text-white shadow-md">
    {
     (!adminDetails.isLogin && userDetailsObj.isLogin )
     &&
-     <motion.div  whileTap={{scale:0.9}}>
+     <motion.div className='w-fit'  whileTap={{scale:0.9}}>
     <Link to="/api/tenantDashBoard" className="flex items-center gap-1 px-3 py-2  bg-[#210e4f63]  hover:shadow-[0px_0px_10px_#220e4f] shadow-[0px_0px_5px_white]
      hover:bg-black hover:scale-[105%]  ease-in rounded transition">
          <FaTachometerAlt />
@@ -140,28 +131,14 @@ bg-gradient-to-r  from-[#f14ef18b]  to-[#5309788b]  text-white shadow-md">
    }
   </ul>
 
-
-  <motion.div 
-  whileTap={{scale:0.9}}
-  onClick={()=>{
-      console.log(showSideBar);
-      setShowSideBar(!showSideBar)
-    }}
-  className='w-fit p-3 bg-[#3d206892] md:hidden shadow-[0px_0px_10px_black]
-   hover:bg-black transition 
-   hover:scale-[105%] hover:shadow-[0px_0px_5px_#f09b9b] ease-in'>
-   {
-    showSideBar 
-    ?
-    <MdCancelPresentation className='text-[30px]'/>
-    :
-     <BiSolidFoodMenu className='text-[30px]'/>
-   }
-  </motion.div>
-      
-
-</nav>
+         <section className='text-[17px] md:ext-[20px] lg:text-[25px]'>
+            <p>Mobile: <span className='text-[#f09b9b]'>7028534928</span></p>
+            <p>Gmail: <span className='text-[#f09b9b]'>PeacePG420@gmail.com</span></p>
+            <p>Address: <span className='text-[#f09b9b]'>Mukai Nagar Hinjewadi Phase 1,Near Matoshri Food Court</span></p>
+            
+         </section>
+    </footer>
   )
 }
 
-export default Navbar
+export default Footer

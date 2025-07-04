@@ -14,7 +14,8 @@ const addBuildingDetailsFunction=async(req,res)=>{
         console.log(typeof bedsPerFloor , typeof floors);
         const totalBeds=parseInt(floors)*parseInt(bedsPerFloor);
         const totalFlats=parseInt(floors)*parseInt(flatsPerFloor)
-        const createNewBuilding=await BuildingModel.create({name,floors,flatsPerFloor,address,ammunities,totalBeds,bedsPerFloor,flatTypes,totalFlats,availableBeds:totalBeds});
+        const createNewBuilding=await BuildingModel.create({name,floors,flatsPerFloor,address,ammunities,
+            totalBeds,bedsPerFloor,flatTypes,totalFlats,availableBeds:totalBeds});
         res.status(200).json({
         success:true,
         message:"Added building details in db",

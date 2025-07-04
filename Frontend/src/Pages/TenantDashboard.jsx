@@ -8,6 +8,7 @@ import StaffMemberDetails from "../Componenets/Tenants Componenets/StaffMemberDe
 import { ClockLoader } from "react-spinners";
 import { UserContext } from "../Context/UserContextProvider";
 import { useContext } from "react";
+import Testimonial from "../Componenets/Tenants Componenets/Testimonial";
 
 function TenantDashboard() {
    const { userDetailsObj } = useContext(UserContext)
@@ -90,9 +91,9 @@ const toggleBedPresentOfUser=()=>{
     // https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2
       loading
       ?
-        <section   className='w-[100%] py-20 bg-center h-screen bg-cover bg-no-repeat bg-fixed overflow-x-hidden flex justify-center items-center
+        <section   className='caveat-fancyFont w-[100%] py-20 bg-center h-screen bg-cover bg-no-repeat bg-fixed overflow-x-hidden flex justify-center items-center
     bg-[url("https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")] '>
-       <div className="  backdrop-blur-lg flex justify-center items-center flex-col h-[70%] w-[50%] mx-auto">
+       <div className="  backdrop-blur-lg flex justify-center items-center flex-col h-[100%] w-[100%] mx-auto">
          <ClockLoader
        loading={loading}
         size={120}
@@ -101,7 +102,7 @@ const toggleBedPresentOfUser=()=>{
         data-testid="loader" 
         
       />
-      <h1 className="w-fit p-5 text-[50px] text-red-500 font-bold mt-5">LOADING......</h1>
+      <h1 className="w-fit p-5 lora  tracking-[5px] text-[50px] text-red-500 font-bold mt-5">LOADING......</h1>
        </div>
         </section>
     
@@ -114,7 +115,7 @@ const toggleBedPresentOfUser=()=>{
 
 
 
-          <TenantsDetailsBox tenatDetailsObj={tenatDetailsObj}  getTenantsFullDetailFunction={getTenantsFullDetailFunction}/>
+        <TenantsDetailsBox tenatDetailsObj={tenatDetailsObj}  getTenantsFullDetailFunction={getTenantsFullDetailFunction}/>
       {
         isUserHasBed
         ?
@@ -123,7 +124,7 @@ const toggleBedPresentOfUser=()=>{
       <TenantsRaisedComplains getAllRaisedComplaintsFunction={getAllRaisedComplaintsFunction} tenatsRaisedComplaintsArray={tenatsRaisedComplaintsArray} setTenatsRaisedComplaintsArray={setTenatsRaisedComplaintsArray}/>
      <StaffMemberDetails/>
       <GaurdsDetailsBox/>
-      
+      <Testimonial/>
         </>
         :
         <>

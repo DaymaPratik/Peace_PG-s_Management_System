@@ -4,9 +4,30 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 import { FaStar } from 'react-icons/fa';
+import { useState } from "react";
 function HomePage() {
+  const [testimonials,setTestimonials]=useState([]);
+  const getTestimonialsDFunction=async()=>{
+    try {
+      const res=await fetch('https://peace-pg-s-management-system.onrender.com/api/get/testimonialsDetails',{
+        method:"GET",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        credentials:"include"
+      });
+      const data=await res.json();
+      console.log(data);
+      setTestimonials(data.testimonialsDetailsArray)
+      
+    } catch (error) {
+      console.log("Error in frontend for getting testimonials",error);
+      
+    }
+  }
   useEffect(() => {
     AOS.init();
+    getTestimonialsDFunction();
   }, []);
 
   let delay=0;
@@ -65,48 +86,50 @@ function HomePage() {
   };
 
 
-  const testimonials = [
-  {
-    name: 'Priya Sharma',
-    role: 'B.Tech Student, Delhi University',
-    feedback:
-      'Staying here felt just like home! The food is great, the rooms are clean, and I made lifelong friends.',
-    rating: 5,
-    image: 'https://randomuser.me/api/portraits/women/68.jpg',
-  },
-  {
-    name: 'Ravi Verma',
-    role: 'Software Engineer, TCS',
-    feedback:
-      'Safe and peaceful place after long office hours. I love the high-speed Wi-Fi and the chill common area!',
-    rating: 4,
-    image: 'https://randomuser.me/api/portraits/men/75.jpg',
-  },
-  {
-    name: 'Megha Kulkarni',
-    role: 'MBA Student, Symbiosis Pune',
-    feedback:
-      'The staff is super friendly, and the events here made my weekends so much fun. Highly recommended!',
-    rating: 5,
-    image: 'https://randomuser.me/api/portraits/women/65.jpg',
-  },
-  {
-    name: 'Megha Kulkarni',
-    role: 'MBA Student, Symbiosis Pune',
-    feedback:
-      'The staff is super friendly, and the events here made my weekends so much fun. Highly recommended!',
-    rating: 5,
-    image: 'https://randomuser.me/api/portraits/women/65.jpg',
-  },
-  {
-    name: 'Megha Kulkarni',
-    role: 'MBA Student, Symbiosis Pune',
-    feedback:
-      'The staff is super friendly, and the events here made my weekends so much fun. Highly recommended!',
-    rating: 5,
-    image: 'https://randomuser.me/api/portraits/women/65.jpg',
-  },
-];
+
+  
+//   const testimonials = [
+//   {
+//     name: 'Priya Sharma',
+//     role: 'B.Tech Student, Delhi University',
+//     feedback:
+//       'Staying here felt just like home! The food is great, the rooms are clean, and I made lifelong friends.',
+//     rating: 5,
+//     image: 'https://randomuser.me/api/portraits/women/68.jpg',
+//   },
+//   {
+//     name: 'Ravi Verma',
+//     role: 'Software Engineer, TCS',
+//     feedback:
+//       'Safe and peaceful place after long office hours. I love the high-speed Wi-Fi and the chill common area!',
+//     rating: 4,
+//     image: 'https://randomuser.me/api/portraits/men/75.jpg',
+//   },
+//   {
+//     name: 'Megha Kulkarni',
+//     role: 'MBA Student, Symbiosis Pune',
+//     feedback:
+//       'The staff is super friendly, and the events here made my weekends so much fun. Highly recommended!',
+//     rating: 5,
+//     image: 'https://randomuser.me/api/portraits/women/65.jpg',
+//   },
+//   {
+//     name: 'Megha Kulkarni',
+//     role: 'MBA Student, Symbiosis Pune',
+//     feedback:
+//       'The staff is super friendly, and the events here made my weekends so much fun. Highly recommended!',
+//     rating: 5,
+//     image: 'https://randomuser.me/api/portraits/women/65.jpg',
+//   },
+//   {
+//     name: 'Megha Kulkarni',
+//     role: 'MBA Student, Symbiosis Pune',
+//     feedback:
+//       'The staff is super friendly, and the events here made my weekends so much fun. Highly recommended!',
+//     rating: 5,
+//     image: 'https://randomuser.me/api/portraits/women/65.jpg',
+//   },
+// ];
 
 const StarRating = ({ rating }) => {
   return (
@@ -350,9 +373,9 @@ const StarRating = ({ rating }) => {
                backdrop-blur-xs rounded-2xl p-2 md:p-6 text-center ease-in transition-transform hover: hover:scale-[1.05]"
             >
               <h3 className="text-[25px] lg:text-[30px] bold ">{testimonial.name}</h3>
-              <p className=" mb-1">{testimonial.role}</p>
+              <p className=" mb-1">{testimonial.designation}</p>
               <StarRating rating={testimonial.rating} />
-              <p className=" mt-2">{testimonial.feedback}</p>
+              <p className=" mt-2">{testimonial.description}</p>
             </div>
           )
           })}

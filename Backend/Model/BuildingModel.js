@@ -29,13 +29,13 @@ const BuildingSchema=new mongoose.Schema({
         required:true
     },
     totalBeds:{
-        type:"String",
+        type:Number,
     },
     availableBeds:{
-        type:"Number"
+        type:Number
     },
     totalFlats:{
-        type:"String",
+        type:Number,
     }
     
 })
