@@ -14,7 +14,7 @@ const TestimonialsRouter=require('./Router/TestimonialsRouter')
 const app=express();
 app.use(express.json());
 app.use(cors({
-    origin:"*",
+    origin:"https://prohirex.provaantech.com/",
     credentials:true,
     method:"GET POST"
 }))
